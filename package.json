@@ -1,0 +1,45 @@
+{
+  "name": "postcss-unit-conversion",
+  "version": "0.0.0",
+  "description": "PostCSS plugin for converting units from px to em or rem.",
+  "keywords": [
+    "postcss",
+    "css",
+    "postcss-plugin",
+    "px to em",
+    "px to rem",
+    "rem",
+    "em",
+    "conversion",
+    "unit",
+    "webpack"
+  ],
+  "author": "jomurgel <dev@jomurgel.com>",
+  "license": "MIT",
+  "repository": "jomurgel/postcss-unit-conversion",
+  "bugs": {
+    "url": "https://github.com/jomurgel/postcss-unit-conversion/issues"
+  },
+  "homepage": "https://github.com/jomurgel/postcss-unit-conversion",
+  "dependencies": {
+    "postcss": "^6.0.16"
+  },
+  "devDependencies": {
+    "eslint": "^4.18.2",
+    "eslint-config-postcss": "^2.0.2",
+    "jest": "^22.4.2",
+    "lodash": "^4.17.11"
+  },
+  "scripts": {
+    "test": "jest && eslint *.js"
+  },
+  "eslintConfig": {
+    "extends": "eslint-config-postcss/es5",
+    "env": {
+      "jest": true
+    }
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}
