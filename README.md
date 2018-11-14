@@ -11,14 +11,14 @@
 ### In
 ```css
 .foo {
-	border: 2px solid blue;
-	border-radius: 2px;
-	box-shadow: 5px 10px #888;
-	font-size: 32px;
-	letter-spacing: 2px;
-	margin: 2px 0;
-	padding: 10px 0;
-	text-shadow: 2px 2px #f00;
+  border: 2px solid blue;
+  border-radius: 2px;
+  box-shadow: 5px 10px #888;
+  font-size: 32px;
+  letter-spacing: 2px;
+  margin: 2px 0;
+  padding: 10px 0;
+  text-shadow: 2px 2px #f00;
 }
 ```
 
