@@ -20,10 +20,12 @@ var DEFAULTS = {
     ]
 };
 
-module.exports = postcss.plugin( 'postcss-unit-conversion', function( opts ) {
+module.exports = postcss.plugin( 'postcss-unit-conversion', function ( opts ) {
 
-    // Get options else use defaults.
+    // Get options else use opts.
+    /* eslint-disable */
     opts = _.extend( {}, DEFAULTS, opts );
+    /* eslint-enable */
 
     /**
      * Parse and multiple new value.
@@ -40,30 +42,6 @@ module.exports = postcss.plugin( 'postcss-unit-conversion', function( opts ) {
     }
 
     /**
-     * Map units for conversion.
-     *
-     * @param {array} array array of props to convert.
-     * @param {object} rule object of rules from postcss.
-     * @return conversion.
-     */
-    function mapForConversion( array, rule ) {
-
-      return array.map( function( type ) {
-
-        rule.walkDecls( type, function( decl ) {
-
-            var valueArray = decl.value.split( ' ' );
-
-            var newValueArray = returnConverted( valueArray, 'em' );
-
-            decl.value = newValueArray.join( ' ' );
-
-            return decl;
-        } );
-      } );
-    }
-
-    /**
      * Convert units from PX to unit.
      *
      * @param {array} array array of value.
@@ -73,13 +51,14 @@ module.exports = postcss.plugin( 'postcss-unit-conversion', function( opts ) {
      */
     function returnConverted( array, unit ) {
 
-        return array.map( function( value ) {
+        return array.map( function ( value ) {
+
             if ( value.includes( 'px' ) ) {
 
-                value = returnNewValue( value, DEFAULTS.base );
+                value = returnNewValue( value, opts.base );
 
-                if ( 0 !== value ) {
-                    return value.toFixed( DEFAULTS.precision ) + unit;
+                if ( value !== 0 ) {
+                    return value.toFixed( opts.precision ) + unit;
                 }
 
                 return value;
@@ -89,16 +68,40 @@ module.exports = postcss.plugin( 'postcss-unit-conversion', function( opts ) {
         } );
     }
 
-    return function( root ) {
+    /**
+     * Map units for conversion.
+     *
+     * @param {array} array array of props to convert.
+     * @param {object} rule object of rules from postcss.
+     * @return conversion.
+     */
+    function mapForConversion( array, rule ) {
+
+        return array.map( function ( type ) {
+
+            rule.walkDecls( type, function ( decl ) {
+
+                var valueArray = decl.value.split( ' ' );
+
+                var newValueArray = returnConverted( valueArray, 'em' );
+
+                decl.value = newValueArray.join( ' ' );
+
+                return decl;
+            } );
+        } );
+    }
+
+    return function ( root ) {
 
     // Look through each selector block.
-        root.walkRules( function( rule ) {
+        root.walkRules( function ( rule ) {
 
             // Convert PX to EM
-            mapForConversion( DEFAULTS.toEM, rule );
+            mapForConversion( opts.toEM, rule );
 
             // Convert PX to REM
-            mapForConversion( DEFAULTS.toREM, rule );
+            mapForConversion( opts.toREM, rule );
         } );
     };
 } );
