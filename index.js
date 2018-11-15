@@ -26,7 +26,7 @@ module.exports = postcss.plugin( 'postcss-unit-conversion', function ( opts ) {
      * Parse and multiple new value.
      *
      * @param {string} value unit to be converted
-     * @param {int} base dfault int base
+     * @param {int} base default int base
      * @returns {int} string new unit.
      */
     function returnNewValue( value, base ) {
@@ -75,9 +75,10 @@ module.exports = postcss.plugin( 'postcss-unit-conversion', function ( opts ) {
      *
      * @param {array} array array of props to convert.
      * @param {object} rule object of rules from postcss.
+     * @param {string} unit unit type.
      * @return conversion.
      */
-    function mapForConversion( array, rule ) {
+    function mapForConversion( array, rule, unit ) {
 
         return array.map( function ( type ) {
 
@@ -87,12 +88,13 @@ module.exports = postcss.plugin( 'postcss-unit-conversion', function ( opts ) {
                 // Turn values into array.
                 var valueArray = decl.value.split( ' ' );
 
-                var newValueArray = returnConverted( valueArray, 'em' );
+                // Return converted values based on rule.
+                var newValueArray = returnConverted( valueArray, unit );
 
                 // Rejoin values.
                 decl.value = newValueArray.join( ' ' );
 
-                // Return new values.
+                // Return new
                 return decl;
             } );
         } );
@@ -101,13 +103,13 @@ module.exports = postcss.plugin( 'postcss-unit-conversion', function ( opts ) {
     return function ( root ) {
 
         // Look through each selector block.
-        root.walkRules( function () {
+        root.walkRules( function ( rule ) {
 
             // Convert PX to EM
-            mapForConversion( opts.toEM, rule );
+            mapForConversion( opts.toEM, rule, 'em' );
 
             // Convert PX to REM
-            mapForConversion( opts.toREM, rule );
+            mapForConversion( opts.toREM, rule, 'rem' );
         } );
     };
 } );
