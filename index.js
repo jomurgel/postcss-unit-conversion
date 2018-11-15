@@ -13,10 +13,6 @@ var DEFAULTS = {
         'font-size',
         'margin',
         'padding'
-    ],
-    ignoreList: [
-        'border',
-        'border-radius'
     ]
 };
 
