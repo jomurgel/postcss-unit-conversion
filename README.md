@@ -59,12 +59,10 @@ var options = {
         'font-size',
         'margin',
         'padding'
-    ],
-    ignoreList: [
-        'border',
-        'border-radius'
     ]
 };
 ```
+
+Anything not added to either `toEM` or `toREM` will retain px (or supplied) values.
 
 See [PostCSS] docs for examples for your environment.
