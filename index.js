@@ -31,8 +31,10 @@ module.exports = postcss.plugin( 'postcss-unit-conversion', function ( opts ) {
      */
     function returnNewValue( value, base ) {
 
+        // Strip px.
         value.replace( 'px', '' );
 
+        // Return value divided by base set above.
         return parseInt( value, 10 ) / base;
     }
 
@@ -48,17 +50,22 @@ module.exports = postcss.plugin( 'postcss-unit-conversion', function ( opts ) {
 
         return array.map( function ( value ) {
 
+            // If we start with px, let's do some math.
             if ( value.includes( 'px' ) ) {
 
+                // Get new values based on px.
                 value = returnNewValue( value, opts.base );
 
+                // Assume we're not 0, return new value.
                 if ( value !== 0 ) {
                     return value.toFixed( opts.precision ) + unit;
                 }
 
+                // Else return value.
                 return value;
             }
 
+            // Else return existing value.
             return value;
         } );
     }
@@ -74,14 +81,18 @@ module.exports = postcss.plugin( 'postcss-unit-conversion', function ( opts ) {
 
         return array.map( function ( type ) {
 
+            // Walk through each type added.
             rule.walkDecls( type, function ( decl ) {
 
+                // Turn values into array.
                 var valueArray = decl.value.split( ' ' );
 
                 var newValueArray = returnConverted( valueArray, 'em' );
 
+                // Rejoin values.
                 decl.value = newValueArray.join( ' ' );
 
+                // Return new values.
                 return decl;
             } );
         } );
@@ -90,7 +101,7 @@ module.exports = postcss.plugin( 'postcss-unit-conversion', function ( opts ) {
     return function ( root ) {
 
         // Look through each selector block.
-        root.walkRules( function ( rule ) {
+        root.walkRules( function () {
 
             // Convert PX to EM
             mapForConversion( opts.toEM, rule );
