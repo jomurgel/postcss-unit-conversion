@@ -18,7 +18,6 @@ var DEFAULTS = {
 
 module.exports = postcss.plugin( 'postcss-unit-conversion', function ( opts ) {
 
-    // Get options else use opts.
     /* eslint-disable */
     opts = _.extend( {}, DEFAULTS, opts );
     /* eslint-enable */
@@ -90,7 +89,7 @@ module.exports = postcss.plugin( 'postcss-unit-conversion', function ( opts ) {
 
     return function ( root ) {
 
-    // Look through each selector block.
+        // Look through each selector block.
         root.walkRules( function ( rule ) {
 
             // Convert PX to EM
