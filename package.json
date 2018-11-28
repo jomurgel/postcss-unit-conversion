@@ -6,6 +6,7 @@
     "postcss",
     "css",
     "postcss-plugin",
+    "unit-conversion",
     "px to em",
     "px to rem",
     "rem",
