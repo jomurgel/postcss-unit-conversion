@@ -19,6 +19,7 @@ var DEFAULTS = {
 module.exports = postcss.plugin( 'postcss-unit-conversion', function ( opts ) {
 
     /* eslint-disable */
+    // Use supplied args or defaults.
     opts = _.extend( {}, DEFAULTS, opts );
     /* eslint-enable */
 
