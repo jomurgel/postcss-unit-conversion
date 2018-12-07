@@ -66,4 +66,12 @@ var options = {
 
 Anything not added to either `toEM` or `toREM` will retain px (or supplied) values.
 
+## Testing
+Run
+``` bash
+$ npm run test
+```
+
+Tests the code example above. Will test against options provided in your post css setup.
+
 See [PostCSS] docs for examples for your environment.
