@@ -75,3 +75,6 @@ $ npm run test
 Tests the code example above. Will test against options provided in your post css setup.
 
 See [PostCSS] docs for examples for your environment.
+
+## Roadmap
+- Add ignore option to ignore conversion of certain elements or classes.
