@@ -1,4 +1,4 @@
-# PostCSS Unit Conversion [![Build Status][ci-img]][ci][![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+# PostCSS Unit Conversion [![Build Status][ci-img]][ci] [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 <img src="https://img.shields.io/badge/version-0.0.1-green.svg" alt="Version 0.0.1" />
 
 [PostCSS] plugin for converting units from px to em or rem. Removes the need for using scss mixins like `em()` or `rem()`. Write in px and convert on the fly.
