@@ -78,3 +78,4 @@ See [PostCSS] docs for examples for your environment.
 
 ## Roadmap
 - Add ignore option to ignore conversion of certain elements or classes.
+- Webpack testing and support.
